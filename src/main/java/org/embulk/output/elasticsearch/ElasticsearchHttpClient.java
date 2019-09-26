@@ -50,7 +50,7 @@ public class ElasticsearchHttpClient
     // public static final int MAX_INDEX_NAME_BYTES = 255;
     // @see https://github.com/elastic/elasticsearch/blob/master/core/src/main/java/org/elasticsearch/cluster/metadata/MetaDataCreateIndexService.java#L108
     private final long maxIndexNameBytes = 255;
-    private final List<Character> inalidIndexCharaters = Arrays.asList('\\', '/', '*', '?', '"', '<', '>', '|', '#', ' ', ',');
+    private final List<Character> invalidIndexCharacters = Arrays.asList('\\', '/', '*', '?', '"', '<', '>', '|', '#', ' ', ',');
 
     public ElasticsearchHttpClient()
     {
@@ -170,8 +170,8 @@ public class ElasticsearchHttpClient
     public void validateIndexOrAliasName(String index, String type)
     {
         for (int i = 0; i < index.length(); i++) {
-            if (inalidIndexCharaters.contains(index.charAt(i))) {
-                throw new ConfigException(String.format("%s '%s' must not contain the invalid characters " + inalidIndexCharaters.toString(), type, index));
+            if (invalidIndexCharacters.contains(index.charAt(i))) {
+                throw new ConfigException(String.format("%s '%s' must not contain the invalid characters " + invalidIndexCharacters.toString(), type, index));
             }
         }
 
