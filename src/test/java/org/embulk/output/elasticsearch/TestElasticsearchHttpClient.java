@@ -50,6 +50,13 @@ public class TestElasticsearchHttpClient
         client.validateIndexOrAliasName("embulk", "index");
     }
 
+    @Test
+    public void testIndexNameWithDefaultIndexTypeName()
+    {
+        ElasticsearchHttpClient client = new ElasticsearchHttpClient();
+        client.validateIndexOrAliasName("embulk", "_doc");
+    }
+
     @Test(expected = ConfigException.class)
     public void testIndexNameContainsUpperCase()
     {
